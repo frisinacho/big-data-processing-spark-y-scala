@@ -1,11 +1,11 @@
 # Exercise 6: Futures
 
-We have a User Service using a repository with asynchronous calls. We need to implement the delete method following the next steps:
+Tenemos un User Service usando un repositorio con llamadas asincronas. Necesitamos implementar un método de borrado, siguiente los siguientes pasos:
 
-1. Check if the user exists.
-   If the user does'nt exist, throw an error with the message "User not found"
-2. Remove the phone lines associated
-3. Remove the user associated
-4. Return the user deleted
+1. Comprobar si el usuario existe.
+    Si el usuario no existe, lanzar una excepción con el mensaje "User not found"
+2. Borrar las lineas de telefono asociadas.
+3. Borrar el usuario asociado.
+4. Borrar el usuario.
 
-Check your response running the tests
+Comprueba las respuestas con los test unitarios.

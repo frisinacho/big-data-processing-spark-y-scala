@@ -1,15 +1,15 @@
 # Exercise 3: Std Library
 
-We have a User Service with several methods. We need to implement these methods:
+Tenemos un User Service con varios métodos. Debemos implementar los métodos siguientes: 
 
-- getAllIds(): return the id of all the users
+- getAllIds(): devuelve el IDs de todos los usuarios.
 
-- getAllsIdsWithName(): return a map with the id as a key and the name of each user as the value
+- getAllsIdsWithName(): return a Map[String, String] con el ID como clave y el nombre del usuario como valor.
 
-- getActiveUsers(): return all the active users
+- getActiveUsers(): Devuelve todos los usuarios activos.
 
-- findUserById(): return a user with a specific id using Option
+- findUserById(): Devuelve un usuario en base a su ID, usando Option.
 
-- joinUserAndPhoneLines(): return all the phone-lines with the user info attached
+- joinUserAndPhoneLines(): Devuelve todos las lines de telefono con la información de usuario adjunta. 
 
-Check your response running the tests
+Comprueba las respuestas con los test unitarios.
