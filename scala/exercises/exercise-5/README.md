@@ -1,16 +1,17 @@
 # Exercise 5: Implicits
 
-We want expand the functionality of the String type.
-We want add the method `toPassword` in order to change the some vowels by numbers:
+Queremos extender la funcionalidad del tipo `String`
+Queremos añadir un método `toPassword`, para remplazar algunas vocales por números:
+
 - a = 4
 - e = 3
 - i = 1
 - o = 0
 
-Later, we want to use it like this:
+Finalmente, queremos usarlo como se ve a continuación:
 
 ```scala
 "Hello World!".toPassword  //H3ll0 W0rld!
 ``` 
 
-Check your response running the tests (play with the comments)
+Comprueba los resultados con los test unitarios.

@@ -2,12 +2,13 @@
 
 ## Fibonacci
 
-Complete at the Maths lib recursive implementation for [fibonacci algorithm](https://en.wikipedia.org/wiki/Fibonacci_number)
+Completa usando la libreria de Maths la implementación del [algoritmo de fibonacci](https://en.wikipedia.org/wiki/Fibonacci_number)
 
-> fibonacci of negative number must throw an IllegalArgumentException
+
+> fibonacci de un numero negativo debe lanzar IllegalArgumentException
 
 ## Binary Tree
 
-Compete at the tree package [in-order algorithm](https://en.wikipedia.org/wiki/Tree_traversal#In-order_(LNR))
+Completa en el tree package [in-order algorithm](https://en.wikipedia.org/wiki/Tree_traversal#In-order_(LNR))
 
-Check your response running the tests
+Comprueba tu respuesta con los tests
