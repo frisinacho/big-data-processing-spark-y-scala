@@ -6,6 +6,6 @@ Tenemos un User Service usando un repositorio con llamadas asincronas. Necesitam
     Si el usuario no existe, lanzar una excepción con el mensaje "User not found"
 2. Borrar las lineas de telefono asociadas.
 3. Borrar el usuario asociado.
-4. Borrar el usuario.
+4. Devuelve el usuario borrado.
 
 Comprueba las respuestas con los test unitarios.
