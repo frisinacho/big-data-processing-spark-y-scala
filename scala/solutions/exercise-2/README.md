@@ -9,6 +9,8 @@ Completa usando la libreria de Maths la implementación del [algoritmo de fibona
 
 ## Binary Tree
 
-Completa en el tree package [in-order algorithm](https://en.wikipedia.org/wiki/Tree_traversal#In-order_(LNR))
+Completa en el tree package:
+
+[pre-order/post-order/in-order algorithm](https://en.wikipedia.org/wiki/Tree_traversal#Depth-first_search_of_binary_tree)
 
 Comprueba tu respuesta con los tests
