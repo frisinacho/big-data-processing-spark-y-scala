@@ -6,7 +6,7 @@ object Maths {
     case n if n < 0 => throw new IllegalArgumentException(s"Invalid input value $n")
     case 0 => 0
     case 1 => 1
-    case _ => fibonacci(n - 2) + fibonacci(n - 1)
+    case _ => fibonacci(n - 1) + fibonacci(n - 2)
   }
 
 }
