@@ -1,4 +1,4 @@
 # Big Data Processing-Spark y Scala
 
-* [Scala](./scala/README.md)
+* [Scala](./scala/)
 * Spark
