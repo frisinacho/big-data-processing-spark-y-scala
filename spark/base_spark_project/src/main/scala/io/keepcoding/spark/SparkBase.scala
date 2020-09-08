@@ -8,9 +8,10 @@ object SparkBase {
 
     val conf = new SparkConf()
       .setAppName("KeepcodingSparkBase")
-      .setMaster("local[1]")
-    val spark = new SparkContext(conf)
-    // Spark Code
-    spark.stop()
+      .setMaster("local[*]")
+    val sc = new SparkContext(conf)
+
+
+    sc.stop()
   }
 }
