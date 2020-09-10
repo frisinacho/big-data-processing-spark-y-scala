@@ -11,6 +11,7 @@ object SparkBase {
       .setMaster("local[*]")
     val sc = new SparkContext(conf)
 
+    // code
 
     sc.stop()
   }
