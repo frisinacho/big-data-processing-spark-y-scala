@@ -8,5 +8,5 @@
     - [Exercise 3: Actions](./base_spark_project/src/main/scala/io/keepcoding/spark/exercise3)
     - [Exercise 4: Read-Operate-Write & Cache](./base_spark_project/src/main/scala/io/keepcoding/spark/exercise4)
     - [Exercise 5: WordCount, TopN, JsonData & Unit Testing](./base_spark_project/src/main/scala/io/keepcoding/spark/exercise5)
-    - [Exercise 6: Spark UI]()
-    - [Exercise 7: Spark with Google Cloud: Dataproc & Google File System]()
+    - [Exercise 6: Spark UI](./exercise6.md)
+    - [Exercise 7: Spark with Google Cloud: Dataproc & Google File System](./exercise7.md)
