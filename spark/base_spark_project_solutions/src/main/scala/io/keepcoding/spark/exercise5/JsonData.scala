@@ -49,6 +49,7 @@ object JsonData {
       // Ordenamos los datos en base al timestamp y sensor_id
       // Obtenemos los datos y los imprimimos en pantalla
       .sortBy(sensor => s"${sensor.timestamp}-${sensor.sensor_id}", ascending = true)
+      // SPARK UI: .foreach{t => print("SLEEP --> "); Thread.sleep(10000); println(t)}
       .collect()
       .foreach(println)
 
