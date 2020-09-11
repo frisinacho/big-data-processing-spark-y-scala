@@ -11,9 +11,7 @@ object JsonDataReadyForTesting {
   // Para trabajar con los JSON en Scala
   sealed case class SensorData(sensor_id: Int, temperature: Int, humidity: Int, timestamp: Long)
 
-  def processJsonData(data: RDD[String]): RDD[SensorData] = {
-    // <code>
-  }
+  def processJsonData(data: RDD[String]): RDD[SensorData] = ???
 
   def main(args: Array[String]): Unit = {
 
