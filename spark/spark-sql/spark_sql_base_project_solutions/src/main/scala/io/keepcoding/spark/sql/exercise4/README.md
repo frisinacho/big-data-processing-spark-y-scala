@@ -7,6 +7,7 @@ En primer lugar vamos a hacer el despliegue de una base de datos relacional (Pos
     - contraseña: `keepcoding`
 
     y esperamos a su creación, puede tardar unos minutos...
+    
     ![](../../../../../../../../../images/create_google_sql.png)
 3. Una vez terminado el despliegue vamos a añadir una regla para poder conectarnos desde nuestra dirección IP pública.
     - Descubrimos cual es nuestra dirección IP: http://www.cualesmiip.com/
