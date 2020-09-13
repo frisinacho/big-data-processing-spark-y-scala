@@ -1,7 +1,7 @@
 # Spark
 
 * [Spark Core](./spark-core)
-* Spark SQL
-* Spark Streaming
+* [Spark SQL](./spark-sql)
+* Spark Structured Streaming
 * Spark Mlib
 * Spark Grahp
