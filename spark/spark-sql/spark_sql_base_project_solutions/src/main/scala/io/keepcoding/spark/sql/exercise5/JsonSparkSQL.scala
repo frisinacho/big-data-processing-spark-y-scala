@@ -5,7 +5,7 @@ import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.types.{IntegerType, LongType, StructType, TimestampType}
 import org.apache.spark.sql.functions._
 
-object SparkSqlBaseProject {
+object JsonSparkSQL {
   val exercise5SensorData = getClass.getClassLoader.getResource("exercise5_sparkcore_data").getFile
 
   def dataframeAPI(spark: SparkSession): Unit = {
