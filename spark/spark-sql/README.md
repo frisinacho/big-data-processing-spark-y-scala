@@ -9,7 +9,6 @@
     - [Exercise 5: ](./spark_sql_base_project/src/main/scala/io/keepcoding/spark/sql/exercise5)
     - [Exercise 6: ]()
 
-
 * SparkSQL: Exercises Solutions:
     - [Exercise 1: Read Multiple Data Sources](./spark_sql_base_project_solutions/src/main/scala/io/keepcoding/spark/sql/exercise1)
     - [Exercise 2: DataFrame Basics](./spark_sql_base_project_solutions/src/main/scala/io/keepcoding/spark/sql/exercise2)
