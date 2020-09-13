@@ -1,0 +1,12 @@
+{
+  "type": "record",
+  "name": "HighschoolUser",
+  "namespace": "io.keepcoding",
+  "fields": [
+    { "name": "nombre", "type": "string" },
+    { "name": "apellido", "type": "string" },
+    { "name": "clase", "type": "string" },
+    { "name": "curso", "type": "string" },
+    { "name": "nota", "type": "long" }
+  ]
+}
