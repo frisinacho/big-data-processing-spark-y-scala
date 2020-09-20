@@ -10,4 +10,12 @@
 	* [Ejercicio 5: Implicits](exercises/exercise-5/README.md)
 	* [Ejercicio 6: Futures](exercises/exercise-6/README.md)
 	* [Ejercicio 7: Futures with For Comprehension](exercises/exercise-7/README.md)
+* Soluciones:
+	* [Ejercicio 1: POO](solutions/exercise-1/README.md)
+	* [Ejercicio 2: Pattern Matching](solutions/exercise-2/README.md)
+	* [Ejercicio 3: Std Library](solutions/exercise-3/README.md)
+	* [Ejercicio 4: Std Library with For Comprehension](solutions/exercise-4/README.md)
+	* [Ejercicio 5: Implicits](solutions/exercise-5/README.md)
+	* [Ejercicio 6: Futures](solutions/exercise-6/README.md)
+	* [Ejercicio 7: Futures with For Comprehension](solutions/exercise-7/README.md)
 * [Extra](./extra.md)
