@@ -10,3 +10,7 @@
 
 * [Scalaj HTTP](https://github.com/scalaj/scalaj-http)
     * Works with HTTP Client API
+
+## Scala Exercises
+
+* [Scala exercises](https://www.scala-exercises.org/)
