@@ -18,4 +18,4 @@
 	* [Ejercicio 5: Implicits](solutions/exercise-5/README.md)
 	* [Ejercicio 6: Futures](solutions/exercise-6/README.md)
 	* [Ejercicio 7: Futures with For Comprehension](solutions/exercise-7/README.md)
-* [Extra](./extra.md)
+* [Extra](./extra)
