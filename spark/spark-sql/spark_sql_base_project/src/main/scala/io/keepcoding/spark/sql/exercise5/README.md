@@ -25,3 +25,11 @@ por sensor en cada minuto, usando:
     * ¿Podría mejorarse el agrupado por fecha? `TimestampType`, `window(...)`
 2. SQL Expression
 3. DatasetAPI
+
+
+### Extra
+
+* Calcular el numero de mensajes medio que reportan entre todos los sensores por minuto.
+* Calcular la temperatura y humedad media por sensor en cada hora.
+* Calcular la temperatura y humedad media por minuto de todos los sensores.
+* Calcular el sensor con la temperatura más baja de cada minuto.
