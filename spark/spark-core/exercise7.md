@@ -1,4 +1,4 @@
-# Spark Core Exercise 6: Google Cloud
+# Spark Core Exercise 7: Google Cloud
 
 ## DataProc & Google File System
 
@@ -20,9 +20,14 @@
     * 1 x Master node: `n1-standard-2`
     * 2 x Worker node: `n1-standard-2`
 ![](images/dataproc_cluster.png)
-```bash
-gcloud dataproc clusters create cluster-keepcoding --enable-component-gateway --region us-central1 --subnet default --zone us-central1-a --master-machine-type n1-standard-2 --master-boot-disk-size 500 --num-workers 2 --worker-machine-type n1-standard-2 --worker-boot-disk-size 500 --image-version preview-ubuntu18 --project ${PROJECT_ID}
-```
+    * DataProc Beta: Spark 3.0.x
+    ```bash
+    gcloud dataproc clusters create cluster-keepcoding --enable-component-gateway --region us-central1 --subnet default --zone us-central1-a --master-machine-type n1-standard-2 --master-boot-disk-size 500 --num-workers 2 --worker-machine-type n1-standard-2 --worker-boot-disk-size 500 --image-version preview-ubuntu18 --project ${PROJECT_ID}
+    ```
+    * DataProc Stable: Spark 2.4.x
+    ```bash
+    gcloud dataproc clusters create cluster-keepcoding --enable-component-gateway --region us-central1 --subnet default --zone us-central1-a --master-machine-type n1-standard-2 --master-boot-disk-size 500 --num-workers 2 --worker-machine-type n1-standard-2 --worker-boot-disk-size 500 --image-version 1.5.11-debian10 --project ${PROJECT_ID}
+    ```
 4. Una vez tenemos el cluster operativo podemos enviar una tarea de tipo spark, configurando la clase principal a ejecutar, la locación del jar y los argumentos de entrada de nuestra aplicación. ![](images/dataproc_task.png)
 5. Podemos ver el estado del job en la lista de tareas y acceder a los logs y las interfaces de jobhistory y yarn.
 6. Finalmente verificaremos los datos de salida en el storage.
