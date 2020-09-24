@@ -15,11 +15,11 @@
     - Compilamos el proyecto mediante un `sbt assembly`, podemos hacerlo desde la CLI de sbt que tenemos el IDE de desarrollo.
     - Una vez empaquetado encontraremos un fichero JAR en el path `target/scala-2.12/base_spark_project-assembly-0.1.jar`
 2. Una vez tenemos el `jar` tenemos que subirlo a Google File System, para que los workers nodo pueden obtener el `jar` de la aplicación de manera distribuida. También subiremos unos datos de prueba a Google File System.
-    - Creamos un segmento en [Google Cloud Storage](https://console.cloud.google.com/storage) con el nombre `keepcoding_${nombre_alumno}` y subimos el `JAR` utilizando la interfaz web. También subimos el ficheros `sample.txt` que se encuentra en resources. ![](images/google_storage.png)
+    - Creamos un segmento en [Google Cloud Storage](https://console.cloud.google.com/storage) con el nombre `keepcoding_${nombre_alumno}` y subimos el `JAR` utilizando la interfaz web. También subimos el ficheros `sample.txt` que se encuentra en resources. ![](../../../../../../../../images/google_storage.png)
 3. Creamos un cluster de dataproc, usando el comando y sustituyendo el ID de vuestro proyecto de google cloud:
     * 1 x Master node: `n1-standard-2`
     * 2 x Worker node: `n1-standard-2`
-![](images/dataproc_cluster.png)
+![](../../../../../../../../images/dataproc_cluster.png)
     * DataProc Beta: Spark 3.0.x
     ```bash
     gcloud dataproc clusters create cluster-keepcoding --enable-component-gateway --region us-central1 --subnet default --zone us-central1-a --master-machine-type n1-standard-2 --master-boot-disk-size 500 --num-workers 2 --worker-machine-type n1-standard-2 --worker-boot-disk-size 500 --image-version preview-ubuntu18 --project ${PROJECT_ID}
@@ -28,6 +28,6 @@
     ```bash
     gcloud dataproc clusters create cluster-keepcoding --enable-component-gateway --region us-central1 --subnet default --zone us-central1-a --master-machine-type n1-standard-2 --master-boot-disk-size 500 --num-workers 2 --worker-machine-type n1-standard-2 --worker-boot-disk-size 500 --image-version 1.5.11-debian10 --project ${PROJECT_ID}
     ```
-4. Una vez tenemos el cluster operativo podemos enviar una tarea de tipo spark, configurando la clase principal a ejecutar, la locación del jar y los argumentos de entrada de nuestra aplicación. ![](images/dataproc_task.png)
+4. Una vez tenemos el cluster operativo podemos enviar una tarea de tipo spark, configurando la clase principal a ejecutar, la locación del jar y los argumentos de entrada de nuestra aplicación. ![](../../../../../../../../images/dataproc_task.png)
 5. Podemos ver el estado del job en la lista de tareas y acceder a los logs y las interfaces de jobhistory y yarn.
 6. Finalmente verificaremos los datos de salida en el storage.
