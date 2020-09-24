@@ -26,10 +26,9 @@ por sensor en cada minuto, usando:
 2. SQL Expression
 3. DatasetAPI
 
-
 ### Extra
 
-* Calcular el numero de mensajes medio que reportan entre todos los sensores por minuto.
-* Calcular la temperatura y humedad media por sensor en cada hora.
-* Calcular la temperatura y humedad media por minuto de todos los sensores.
-* Calcular el sensor con la temperatura más baja de cada minuto.
+1. Calcular el numero de mensajes medio que reportan entre todos los sensores por minuto.
+2. Calcular la temperatura y humedad media por sensor en cada hora.
+3. Calcular la temperatura y humedad media por minuto de todos los sensores.
+4. Calcular el sensor con la temperatura media más baja de cada minuto.
