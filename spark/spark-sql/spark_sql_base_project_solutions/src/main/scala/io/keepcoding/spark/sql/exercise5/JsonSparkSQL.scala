@@ -2,11 +2,78 @@ package io.keepcoding.spark.sql.exercise5
 
 import org.apache.parquet.format.IntType
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.expressions.Window
 import org.apache.spark.sql.types.{IntegerType, LongType, StructType, TimestampType}
 import org.apache.spark.sql.functions._
 
 object JsonSparkSQL {
   val exercise5SensorData = getClass.getClassLoader.getResource("exercise5_sparkcore_data").getFile
+
+  //1. Calcular el numero de mensajes medio que reportan entre todos los sensores por minuto.
+  def extra1(spark: SparkSession): Unit = {
+    import spark.implicits._
+
+    spark
+      .read
+      .format("json")
+      .load(s"$exercise5SensorData/*.json")
+      .groupBy($"sensor_id", window($"timestamp".cast(TimestampType), "1 minute"))
+      .agg(count("*").as("total_messages"))
+      .agg(avg("total_messages"))
+      .show
+  }
+
+  //2. Calcular la temperatura y humedad media por sensor en cada hora.
+  def extra2(spark: SparkSession): Unit = {
+    import spark.implicits._
+
+    spark
+      .read
+      .format("json")
+      .load(s"$exercise5SensorData/*.json")
+      .groupBy($"sensor_id", window($"timestamp".cast(TimestampType), "1 hour"))
+      .agg(avg($"temperature").as("temperature"), avg($"humidity").as("humidity"))
+      .withColumn("timestamp", $"window.start")
+      .drop($"window")
+      .sort("sensor_id", "timestamp")
+      .show()
+  }
+
+  //3. Calcular la temperatura y humedad media por minuto de todos los sensores.
+  def extra3(spark: SparkSession): Unit = {
+    import spark.implicits._
+
+    spark
+      .read
+      .format("json")
+      .load(s"$exercise5SensorData/*.json")
+      .groupBy(window($"timestamp".cast(TimestampType), "1 minute"))
+      .agg(avg($"temperature").as("temperature"), avg($"humidity").as("humidity"))
+      .withColumn("timestamp", $"window.start".cast(LongType))
+      .drop($"window")
+      .sort("timestamp")
+      .show()
+  }
+
+  //4. Calcular el sensor con la temperatura más baja de cada minuto.
+  def extra4(spark: SparkSession): Unit = {
+    import spark.implicits._
+
+    spark
+      .read
+      .format("json")
+      .load(s"$exercise5SensorData/*.json")
+      .select($"sensor_id", $"timestamp", $"temperature")
+      .groupBy($"sensor_id", window($"timestamp".cast(TimestampType), "1 minute"))
+      .agg(avg($"temperature").as("temperature"))
+      .withColumn("timestamp", $"window.start")
+      .drop($"window")
+      .withColumn("row", row_number.over(Window.partitionBy("timestamp").orderBy($"temperature".asc)))
+      .where($"row" === 1)
+      .drop($"row")
+      .sort($"timestamp".asc)
+      .show()
+  }
 
   def dataframeAPI(spark: SparkSession): Unit = {
     import spark.implicits._
@@ -102,9 +169,14 @@ object JsonSparkSQL {
       .appName("Spark SQL KeepCoding Base")
       .getOrCreate()
 
-    dataframeAPI(spark)
-    sqlAPI(spark)
-    datasetAPI(spark)
+    //dataframeAPI(spark)
+    //sqlAPI(spark)
+    //datasetAPI(spark)
+
+    //extra1(spark)
+    //extra2(spark)
+    //extra3(spark)
+    extra4(spark)
 
     spark.close()
   }

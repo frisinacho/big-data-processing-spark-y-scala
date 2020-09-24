@@ -1,0 +1,2 @@
+{"source":"Server001", "timestamp":1599758689, "messages": [{"sensor_id":1, "data": {"temperature": 28, "humidity": 80}}, {"sensor_id":2, "data": {"temperature": 28, "humidity": 80}}, {"sensor_id":3, "data": {"temperature": 28, "humidity": 80}}]}
+{"source":"Server001", "timestamp":1599758749, "messages": [{"sensor_id":1, "data": {"temperature": 32, "humidity": 92}}, {"sensor_id":2, "data": {"temperature": 31, "humidity": 82}}, {"sensor_id":3, "data": {"temperature": 25, "humidity": 70}}]}
