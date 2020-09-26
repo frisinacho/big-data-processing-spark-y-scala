@@ -1,5 +1,7 @@
 package io.keepcoding.spark.structured.streaming
 
+import org.apache.spark.sql.SparkSession
+
 object SparkStructuredStreamingBaseProject {
 
   def main(args: Array[String]): Unit = {
