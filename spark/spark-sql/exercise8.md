@@ -1,4 +1,4 @@
-# Spark SQL: Exercise 6
+# Spark SQL: Exercise 8
 
 ## spark-sql CLI
 

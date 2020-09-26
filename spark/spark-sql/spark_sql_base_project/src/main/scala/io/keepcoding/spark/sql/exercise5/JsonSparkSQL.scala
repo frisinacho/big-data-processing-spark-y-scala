@@ -1,5 +1,6 @@
 package io.keepcoding.spark.sql.exercise5
 
+import io.keepcoding.spark.sql.exercise5.JsonSparkSQL.extra4
 import org.apache.parquet.format.IntType
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.types.{IntegerType, LongType, StructType, TimestampType}
@@ -12,6 +13,10 @@ object JsonSparkSQL {
   def dataframeAPI(spark: SparkSession): Unit = ???
   def sqlAPI(spark: SparkSession): Unit = ???
   def datasetAPI(spark: SparkSession): Unit = ???
+  def extra1(spark: SparkSession): Unit = ???
+  def extra2(spark: SparkSession): Unit = ???
+  def extra3(spark: SparkSession): Unit = ???
+  def extra4(spark: SparkSession): Unit = ???
 
   def main(args: Array[String]): Unit = {
 
@@ -24,6 +29,11 @@ object JsonSparkSQL {
     dataframeAPI(spark)
     sqlAPI(spark)
     datasetAPI(spark)
+
+    extra1(spark)
+    extra2(spark)
+    extra3(spark)
+    extra4(spark)
 
     spark.close()
   }
