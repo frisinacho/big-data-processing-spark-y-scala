@@ -1,0 +1,6 @@
+{"sensor_id":1,"metrics":[26, 74],"timestamp":1599758629, "locations":["ZonaA", "Pasillo1"]}
+{"sensor_id":2,"metrics":[31, 80],"timestamp":1599758629, "locations":["ZonaB", "Pasillo1"]}
+{"sensor_id":3,"metrics":[34, 60],"timestamp":1599758629, "locations":["ZonaA", "Pasillo2"]}
+{"sensor_id":1,"metrics":[25, 80],"timestamp":1599758689, "locations":["ZonaA", "Pasillo1"]}
+{"sensor_id":2,"metrics":[32, 75],"timestamp":1599758689, "locations":["ZonaB", "Pasillo1"]}
+{"sensor_id":3,"metrics":[35, 62],"timestamp":1599758689, "locations":["ZonaA", "Pasillo1"]}
