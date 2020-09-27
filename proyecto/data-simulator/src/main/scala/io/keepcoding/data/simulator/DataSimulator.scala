@@ -34,7 +34,11 @@ object DataSimulator {
                   .deepMerge(Map("app" -> Apps(random.nextInt(Apps.size - 1))).asJson)
                   .deepMerge(Map("bytes" -> random.nextInt(10000), "timestamp" -> (System.currentTimeMillis() / 1000).toInt).asJson)
                   .toString()
-              } else json.toString()
+              } else {
+                json
+                  .deepMerge(Map("timestamp" -> (System.currentTimeMillis() / 1000).toInt).asJson)
+                  .toString()
+              }
             }.replaceAll("\\s", "")
 
             println(topic, s"Sending: $message")
