@@ -1,0 +1,1 @@
+{"class":"org.apache.spark.ml.feature.VectorAssembler","timestamp":1601206636167,"sparkVersion":"3.0.1","uid":"vecAssembler_ec08d1cfe54a","paramMap":{"inputCols":["Height_m","Weight_kg","Catch_Rate"],"outputCol":"numFeatures"},"defaultParamMap":{"handleInvalid":"error","outputCol":"vecAssembler_ec08d1cfe54a__output"}}

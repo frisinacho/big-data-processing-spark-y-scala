@@ -7,7 +7,7 @@ En este ejercicio vamos a intentar predecir el tipo de un pokemon.
 3. Creamos un vector de features con las columnas de categoria.
 4. Creamos un vector de las features continuas y las normalizamos.
 5. Combinamos todas las features.
-6. Creamos un modelo de clasificación: LogisticRegression.
+6. Creamos un modelo de clasificación: RandomForestClassifier.
 7. Construimos un pipeline con todos los stages anteriores.
 8. Entrenemos el pipeline, para conseguir nuestro modelo (train: 70%)
 9. Probamos nuestro modelo (test: 30%)

@@ -1,7 +1,7 @@
 package io.keepcoding.spark.ml.exercise1
 
 import org.apache.spark.ml.Pipeline
-import org.apache.spark.ml.classification.LogisticRegression
+import org.apache.spark.ml.classification.{LogisticRegression, RandomForestClassifier}
 import org.apache.spark.ml.feature.{MinMaxScaler, StringIndexer, VectorAssembler, VectorIndexer}
 import org.apache.spark.sql.SparkSession
 
@@ -73,18 +73,16 @@ object PokemonClassifier {
 
     // Creamos el modelo de LogisticRegression
 
-    val lr = new LogisticRegression()
+    val rf = new RandomForestClassifier()
       .setLabelCol("classIndex")
       .setFeaturesCol("features")
-      .setMaxIter(10)
-      .setRegParam(0.3)
 
     // Modelamos el pipeline, con todos sus stages
 
     val pipeline = new Pipeline()
       .setStages(Array(
         classIndexer, colorIndexer, bodyIndexer, categoryVect, categoryIndex, numericVect, minMaxFeatures,
-        features, lr
+        features, rf
       ))
 
     val model = pipeline.fit(trainDF)
