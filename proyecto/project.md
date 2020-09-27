@@ -41,7 +41,7 @@ Podemos ver el funcionamiento de nuestra arquitectura en la siguiente [página](
 
 En primer lugar vamos a empezar a crear y configurar nuestro sistema de speed layer, para ellos vamos a crear una instancia en google compute engine, y vamos a configurarla para poder hacer funcionar un broker de Apache Kafka, donde se recibirán los mensajes en tiempo real de las fuentes 1 y 2. [Google Compute Instance Setup Guide](./vm_setup.md)
 
-Una vez tenemos nuestra instancia, con las reglas firewall aplicadas correctamente y kafka funcionando, podemos probar a producir datos. En este proyecto usaremos un simulador de datos, este simulador será un docker `andresgomezfrr/data-simulator:1.0`. Podemos ejecutarlo en otra conexión dentro la instancia de google, abrimos una nueva ventana o usamos una de las que tenemos disponibles y ejecutamos el siguiente comando, sustituyendo la dirección IP pública de la instancia de google:
+Una vez tenemos nuestra instancia, con las reglas firewall aplicadas correctamente y kafka funcionando, podemos probar a producir datos. En este proyecto usaremos un simulador de datos, este simulador será un docker `andresgomezfrr/data-simulator:1.1`. Podemos ejecutarlo en otra conexión dentro la instancia de google, abrimos una nueva ventana o usamos una de las que tenemos disponibles y ejecutamos el siguiente comando, sustituyendo la dirección IP pública de la instancia de google:
 ```bash
 docker run -it -e KAFKA_SERVERS=${INSTANCE_PUBLIC_IP}:9092 andresgomezfrr/data-simulator:1.0
 ```
