@@ -40,6 +40,7 @@ object BasicExample {
     // 7. Si consideramos que un persona tiene que estar más valorada en base al numero de relaciones directas o indirectas
     //    cual sería la clasificación, podemos utilizar un algoritmo de PageRank.
 
+    // 8. Calcula el numero de relaciones que forman un triangualo en nuestro colegio.
 
     spark.stop()
   }
