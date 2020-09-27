@@ -2,7 +2,7 @@
 
 En este ejercicio vamos a construir un caso de uso streaming + batch, similar a lo que haremos en la práctica del proyecto final.
 
-## Fuente de datos 
+## Fuente de datos
 
 ### Información de antena
 
