@@ -125,6 +125,19 @@ object BasicExample {
     personRanking
       .foreach(println)
 
+    // 8. Calcula el numero de relaciones que forman un triangualo en nuestro colegio.
+    val triangleCount = graph
+      .triangleCount
+      .vertices
+      .join(personsRDD)
+      .map { case (_, (count, person)) => (person, count) }
+      .sortBy(_._2, ascending = false)
+      .collect()
+
+    println("Triangle Count:")
+    triangleCount
+      .foreach(println)
+
     spark.stop()
   }
 }
