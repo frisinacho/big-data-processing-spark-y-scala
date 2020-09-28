@@ -75,8 +75,7 @@ Ejecutaremos el job de spark dentro de DataProc/Local e indicar por argumento:
 * Hay que crear la tabla en postgresql antes de ejecutar el job de structuredStreaming.
 * Si decidimos ejecutar en dataProc es mejor que usemos la versión 2.4.7 de spark, ya que la versión 3.0.1 esta en BETA para dataproc y da algunos problemas en el structuredStreaming. Creación cluster spark dataproc con versión 2.4.7:
     ```bash
-    gcloud dataproc clusters create cluster-keepcoding --enable-component-gateway --region us-central1 --subnet default --zone us-central1-a --master-machine-type n1-standard-2 --master-boot-disk-size 500 --num-workers 2 --worker-machine-type n1-standard-2 --worker-boot-disk-size 500 --image-version 1.5.11-debia
-    n10 --project ${PROJECT_ID}
+    gcloud dataproc clusters create cluster-keepcoding --enable-component-gateway --region us-central1 --subnet default --zone us-central1-a --master-machine-type n1-standard-2 --master-boot-disk-size 500 --num-workers 2 --worker-machine-type n1-standard-2 --worker-boot-disk-size 500 --image-version 1.5.11-debian10 --project ${PROJECT_ID}
     ```
 * Debemos de configurar en sbt la version de spark a 2.4.7 y añadirle el scope `provided`, ya que estas dependencias estaran en DataProc.
 
