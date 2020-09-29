@@ -12,4 +12,4 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-avro" % sparkVersion,
   "org.apache.spark" %% "spark-sql-kafka-0-10" % sparkVersion,
   "org.apache.kafka" % "kafka-clients" % "2.6.0"
-)git a
+)
