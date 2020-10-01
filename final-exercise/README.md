@@ -97,4 +97,4 @@ CREATE TABLE antenna_agg (location TEXT, date TIMESTAMP, avg_devices_count BIGIN
 
 ### Extra
 
-Intentar visualizar las métricas que sean posibles en Superset.⏎
+Intentar visualizar las métricas que sean posibles en Superset.
