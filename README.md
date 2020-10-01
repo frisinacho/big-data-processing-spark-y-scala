@@ -5,4 +5,6 @@
 
 * [Proyecto](./proyecto/project.md)
 
+* [Ejercicio Final](./final-exercise)
+
 ![](images/mapa.png)
