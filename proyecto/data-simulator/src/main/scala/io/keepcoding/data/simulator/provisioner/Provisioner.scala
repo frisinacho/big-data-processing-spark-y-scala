@@ -27,6 +27,9 @@ object Provisioner {
       println("Creating the user_metadata table (id TEXT, name TEXT, email TEXT, quota BIGINT).")
       statement.execute("CREATE TABLE IF NOT EXISTS user_metadata(id TEXT, name TEXT, email TEXT, quota BIGINT)")
 
+      println("Creating the bytes table (timestamp TIMESTAMP, id TEXT, value BIGINT, type TEXT).")
+      statement.execute("CREATE TABLE IF NOT EXISTS bytes(timestamp TIMESTAMP, id TEXT, value BIGINT, type TEXT)")
+
       println("Initial load for data.")
       statement.execute("INSERT INTO user_metadata (id, name, email, quota) VALUES ('00000000-0000-0000-0000-000000000001', 'andres', 'andres@gmail.com', 200000)")
       statement.execute("INSERT INTO user_metadata (id, name, email, quota) VALUES ('00000000-0000-0000-0000-000000000002', 'paco', 'paco@gmail.com', 300000)")
