@@ -10,7 +10,7 @@ object Provisioner {
     val driver = "org.postgresql.Driver"
     val url = s"jdbc:postgresql://$IpServer:5432/postgres"
     val username = "postgres"
-    val password = "postgres"
+    val password = "keepcoding"
 
     // there's probably a better way to do this
     var connection: Connection = null
