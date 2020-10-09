@@ -1,5 +1,5 @@
 package io.keepcoding.data.simulator.streaming
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.{DataFrame, SparkSession}
 
 object StreamingJobImpl extends StreamingJob {
   override val spark: SparkSession = SparkSession
@@ -8,5 +8,14 @@ object StreamingJobImpl extends StreamingJob {
     .appName("Spark SQL KeepCoding Base")
     .getOrCreate()
 
-  def main(): Unit = run()
+  override def readFromKafka(kafkaServer: String, topic: String): DataFrame = {
+    spark
+      .readStream
+      .format("kafka")
+      .option("kafka.bootstrap.servers", kafkaServer)
+      .option("subscribe", topic)
+      .load()
+  }
+
+  def main(args: Array[String]): Unit = run(args)
 }
