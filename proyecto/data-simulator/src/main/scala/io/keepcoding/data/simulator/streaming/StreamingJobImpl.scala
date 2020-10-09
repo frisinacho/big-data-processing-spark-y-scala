@@ -29,5 +29,24 @@ object StreamingJobImpl extends StreamingJob {
       .select("json.*")
   }
 
+  override def readUserMetadata(jdbcURI: String, jdbcTable: String, user: String, password: String): DataFrame = {
+    spark
+      .read
+      .format("jdbc")
+      .option("url", jdbcURI)
+      .option("dbtable", jdbcTable)
+      .option("user", user)
+      .option("password", password)
+      .load()
+  }
+
+  override def enrichDevicesWithUserMetadata(devicesDF: DataFrame, userMetadataDF: DataFrame): DataFrame = {
+    devicesDF.as("device")
+      .join(
+        userMetadataDF.as("userMetadata"),
+        $"device.id" === $"userMetadata.id"
+      ).drop($"userMetadata.id")
+  }
+
   def main(args: Array[String]): Unit = run(args)
 }

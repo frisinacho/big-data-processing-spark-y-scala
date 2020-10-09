@@ -11,14 +11,20 @@ trait StreamingJob {
 
   def parserJsonData(dataFrame: DataFrame): DataFrame
 
+  def readUserMetadata(jdbcURI: String, jdbcTable: String, user: String, password: String): DataFrame
+
+  def enrichDevicesWithUserMetadata(devicesDF: DataFrame, userMetadataDF: DataFrame): DataFrame
+
     def run(args: Array[String]): Unit = {
-      val Array(kafkaServer, topic) = args
+      val Array(kafkaServer, topic, jdbcUri, jdbcMetadataTable, jdbcUser, jdbcPassword) = args
       println(s"Running with: ${args.toSeq}")
 
       val kafkaDF = readFromKafka(kafkaServer, topic)
       val devicesDF = parserJsonData(kafkaDF)
+      val userMetadataDF = readUserMetadata(jdbcUri, jdbcMetadataTable, jdbcUser, jdbcPassword)
+      val devicesMetadataDF = enrichDevicesWithUserMetadata(devicesDF, userMetadataDF)
 
-      devicesDF
+      devicesMetadataDF
         .writeStream
         .format("console")
         .start()
@@ -28,7 +34,7 @@ trait StreamingJob {
 
       spark.close()
 
-      // ARGS: KAFKA_SERVER:9092 devices
+      // ARGS: KAFKA_SERVER:9092 devices jdbc:postgresql://34.78.249.75:5432/postgres user_metadata postgres keepcoding
     }
 
 }
