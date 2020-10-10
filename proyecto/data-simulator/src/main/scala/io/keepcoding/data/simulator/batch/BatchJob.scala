@@ -11,13 +11,26 @@ trait BatchJob {
 
   def readFromStorage(storagePath: String, year: String, month: String, day: String, hour: String): DataFrame
 
+  def computeBytesReceivedByAntenna(dataFrame: DataFrame): DataFrame
+  def computeBytesTransmittedByUser(dataFrame: DataFrame): DataFrame
+  def computeBytesTransmittedByApp(dataFrame: DataFrame): DataFrame
+  def computeUsersOverQuota(dataFrame: DataFrame): DataFrame
+
   def run(args: Array[String]): Unit = {
     val Array(year, month, day, hour, storagePath) = args
     println(s"Running with: ${args.toSeq}")
 
     val devicesDF = readFromStorage(storagePath, year, month, day, hour)
 
+    val aggByAntennaDF = computeBytesReceivedByAntenna(devicesDF)
+    val aggByUserDF = computeBytesTransmittedByUser(devicesDF)
+    val aggByAppDF = computeBytesTransmittedByApp(devicesDF)
+
     devicesDF.show()
+
+    aggByAntennaDF.show()
+    aggByUserDF.show()
+    aggByAppDF.show()
 
     spark.close()
 
