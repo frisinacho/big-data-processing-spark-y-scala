@@ -6,7 +6,7 @@ object Provisioner {
   def main(args: Array[String]) {
     val IpServer = "34.78.249.75"
 
-    // connect to the database named "mysql" on the localhost
+    // connect to the postgres database
     val driver = "org.postgresql.Driver"
     val url = s"jdbc:postgresql://$IpServer:5432/postgres"
     val username = "postgres"
@@ -52,6 +52,8 @@ object Provisioner {
       statement.execute("INSERT INTO user_metadata (id, name, email, quota) VALUES ('00000000-0000-0000-0000-000000000019', 'carlota', 'carlota@gmail.com', 200000)")
       statement.execute("INSERT INTO user_metadata (id, name, email, quota) VALUES ('00000000-0000-0000-0000-000000000020', 'emilio', 'emilio@gmail.com', 200000)")
 
+      println("Creating the bytes_by_antenna_agg table (antenna_id TEXT, date TIMESTAMP, sum_bytes_antenna BIGINT).")
+      statement.execute("CREATE TABLE IF NOT EXISTS bytes_by_antenna_agg(antenna_id TEXT, date TIMESTAMP, sum_bytes_antenna BIGINT)")
     } catch {
       case e => e.printStackTrace()
     }

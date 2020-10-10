@@ -1,8 +1,8 @@
 package io.keepcoding.data.simulator.streaming
 import org.apache.spark.sql.catalyst.ScalaReflection
-import org.apache.spark.sql.functions.{col, dayofmonth, from_json, hour, month, year}
+import org.apache.spark.sql.functions.{col, dayofmonth, from_json, hour, month, sum, window, year}
 import org.apache.spark.sql.types.{StringType, StructType, TimestampType}
-import org.apache.spark.sql.{DataFrame, SparkSession}
+import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
@@ -70,6 +70,38 @@ object StreamingJobImpl extends StreamingJob {
       .start()
       .awaitTermination()
   }
+
+   def writeToJdbc(dataFrame: DataFrame, jdbcURI: String, jdbcTable: String, user: String, password: String): Future[Unit] = Future {
+    dataFrame
+      .writeStream
+      .foreachBatch { (data: DataFrame, batchId: Long) =>
+        data
+          .write
+          .mode(SaveMode.Append)
+          .format("jdbc")
+          .option("driver", "org.postgresql.Driver")
+          .option("url", jdbcURI)
+          .option("dbtable", jdbcTable)
+          .option("user", user)
+          .option("password", password)
+          .save()
+      }
+      .start()
+      .awaitTermination()
+  }
+
+  override def computeBytesReceivedByAntenna(dataFrame: DataFrame): DataFrame = {
+    dataFrame
+      .select(($"timestamp").cast(TimestampType), $"bytes", $"antenna_id")
+      .withWatermark("timestamp", "30 seconds")
+      .groupBy($"antenna_id", window($"timestamp", "5 minutes"))
+      .agg(sum($"bytes").as("sum_bytes_antenna"))
+      .select($"antenna_id", $"window.start".as("date"), $"sum_bytes_antenna")
+  }
+
+  override def computeBytesTransmittedByUser(dataFrame: DataFrame): DataFrame = ???
+
+  override def computeBytesTransmittedByApp(dataFrame: DataFrame): DataFrame = ???
 
   def main(args: Array[String]): Unit = run(args)
 }
