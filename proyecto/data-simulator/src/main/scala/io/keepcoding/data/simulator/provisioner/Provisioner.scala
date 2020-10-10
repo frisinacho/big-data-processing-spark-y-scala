@@ -54,6 +54,12 @@ object Provisioner {
 
       println("Creating the bytes_by_antenna_agg table (antenna_id TEXT, date TIMESTAMP, sum_bytes_antenna BIGINT).")
       statement.execute("CREATE TABLE IF NOT EXISTS bytes_by_antenna_agg(antenna_id TEXT, date TIMESTAMP, sum_bytes_antenna BIGINT)")
+
+      println("Creating the bytes_by_user_agg table (id TEXT, date TIMESTAMP, sum_bytes_user BIGINT).")
+      statement.execute("CREATE TABLE IF NOT EXISTS bytes_by_user_agg(id TEXT, date TIMESTAMP, sum_bytes_user BIGINT)")
+
+      println("Creating the bytes_by_app_agg table (app TEXT, date TIMESTAMP, sum_bytes_user BIGINT).")
+      statement.execute("CREATE TABLE IF NOT EXISTS bytes_by_app_agg(app TEXT, date TIMESTAMP, sum_bytes_app BIGINT)")
     } catch {
       case e => e.printStackTrace()
     }

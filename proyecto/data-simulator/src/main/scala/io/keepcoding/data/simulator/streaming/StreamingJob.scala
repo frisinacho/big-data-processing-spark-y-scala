@@ -24,7 +24,7 @@ trait StreamingJob {
   def computeBytesTransmittedByApp(dataFrame: DataFrame): DataFrame
 
     def run(args: Array[String]): Unit = {
-      val Array(kafkaServer, topic, jdbcUri, jdbcMetadataTable, aggJdbcTable, jdbcUser, jdbcPassword, storagePath) = args
+      val Array(kafkaServer, topic, jdbcUri, jdbcMetadataTable, aggAntennaTable, aggUserTable, aggAppTable, jdbcUser, jdbcPassword, storagePath) = args
       println(s"Running with: ${args.toSeq}")
 
       val kafkaDF = readFromKafka(kafkaServer, topic)
@@ -32,16 +32,21 @@ trait StreamingJob {
       val userMetadataDF = readUserMetadata(jdbcUri, jdbcMetadataTable, jdbcUser, jdbcPassword)
       val devicesMetadataDF = enrichDevicesWithUserMetadata(devicesDF, userMetadataDF)
       val storageFuture = writeToStorage(devicesMetadataDF, storagePath)
+
       val aggByAntennaDF = computeBytesReceivedByAntenna(devicesMetadataDF)
-      val aggFuture = writeToJdbc(aggByAntennaDF, jdbcUri, aggJdbcTable, jdbcUser, jdbcPassword)
+      val aggByUserDF = computeBytesTransmittedByUser(devicesMetadataDF)
+      val aggByAppDF = computeBytesTransmittedByApp(devicesMetadataDF)
 
-      Await.result(Future.sequence(Seq(storageFuture, aggFuture)), Duration.Inf)
+      val aggAntennaFuture = writeToJdbc(aggByAntennaDF, jdbcUri, aggAntennaTable, jdbcUser, jdbcPassword)
+      val aggUserFuture = writeToJdbc(aggByUserDF, jdbcUri, aggUserTable, jdbcUser, jdbcPassword)
+      val aggAppFuture = writeToJdbc(aggByAppDF, jdbcUri, aggAppTable, jdbcUser, jdbcPassword)
 
+      Await.result(Future.sequence(Seq(storageFuture, aggAntennaFuture, aggUserFuture, aggAppFuture)), Duration.Inf)
 
 
       spark.close()
 
-      // ARGS: KAFKA_SERVER:9092 devices jdbc:postgresql://34.78.249.75:5432/postgres bytes_by_antenna_agg user_metadata postgres keepcoding gs://keepcoding_nacho/data-simulator/
+      // ARGS: KAFKA_SERVER:9092 devices jdbc:postgresql://34.78.249.75:5432/postgres bytes_by_antenna_agg bytes_by_user_agg bytes_by_app_agg user_metadata postgres keepcoding gs://keepcoding_nacho/data-simulator/
     }
 
 }

@@ -99,9 +99,23 @@ object StreamingJobImpl extends StreamingJob {
       .select($"antenna_id", $"window.start".as("date"), $"sum_bytes_antenna")
   }
 
-  override def computeBytesTransmittedByUser(dataFrame: DataFrame): DataFrame = ???
+  override def computeBytesTransmittedByUser(dataFrame: DataFrame): DataFrame = {
+    dataFrame
+      .select(($"timestamp").cast(TimestampType), $"bytes", $"id")
+      .withWatermark("timestamp", "30 seconds")
+      .groupBy($"id", window($"timestamp", "5 minutes"))
+      .agg(sum($"bytes").as("sum_bytes_user"))
+      .select($"id", $"window.start".as("date"), $"sum_bytes_user")
+  }
 
-  override def computeBytesTransmittedByApp(dataFrame: DataFrame): DataFrame = ???
+  override def computeBytesTransmittedByApp(dataFrame: DataFrame): DataFrame = {
+    dataFrame
+      .select(($"timestamp").cast(TimestampType), $"bytes", $"app")
+      .withWatermark("timestamp", "30 seconds")
+      .groupBy($"app", window($"timestamp", "5 minutes"))
+      .agg(sum($"bytes").as("sum_bytes_app"))
+      .select($"app", $"window.start".as("date"), $"sum_bytes_app")
+  }
 
   def main(args: Array[String]): Unit = run(args)
 }
