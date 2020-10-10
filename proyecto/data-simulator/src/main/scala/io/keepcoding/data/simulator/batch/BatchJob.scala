@@ -9,18 +9,18 @@ trait BatchJob {
 
   val spark: SparkSession
 
-  def readFromStorage(storagePath: String, filterDate: OffsetDateTime): DataFrame
+  def readFromStorage(storagePath: String, year: String, month: String, day: String, hour: String): DataFrame
 
   def run(args: Array[String]): Unit = {
-    val Array(filterDate, storagePath) = args
+    val Array(year, month, day, hour, storagePath) = args
     println(s"Running with: ${args.toSeq}")
 
-    val devicesDF = readFromStorage(storagePath, OffsetDateTime.parse(filterDate))
+    val devicesDF = readFromStorage(storagePath, year, month, day, hour)
 
     devicesDF.show()
 
     spark.close()
 
-    // ARGS: <filterDate> /tmp/data-simulator/
+    // ARGS: year month day hour /tmp/data-simulator/
   }
 }

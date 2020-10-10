@@ -11,16 +11,16 @@ object BatchJobImpl extends BatchJob {
 
   import spark.implicits._
 
-  override def readFromStorage(storagePath: String, filterDate: OffsetDateTime): DataFrame = {
+  override def readFromStorage(storagePath: String, year: String, month: String, day: String, hour: String): DataFrame = {
     spark
       .read
       .format("parquet")
       .load(s"${storagePath}/data")
       .filter(
-        $"year" === filterDate.getYear &&
-          $"month" === filterDate.getMonthValue &&
-          $"day" === filterDate.getDayOfMonth &&
-          $"hour" === filterDate.getHour
+        $"year" === year &&
+          $"month" === month &&
+          $"day" === day &&
+          $"hour" === hour
       )
   }
 
