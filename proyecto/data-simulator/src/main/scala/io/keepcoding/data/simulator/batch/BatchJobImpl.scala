@@ -1,7 +1,7 @@
 package io.keepcoding.data.simulator.batch
 import org.apache.spark.sql.functions.{sum, when}
 import org.apache.spark.sql.types.TimestampType
-import org.apache.spark.sql.{DataFrame, SparkSession}
+import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}
 
 object BatchJobImpl extends BatchJob {
   override val spark: SparkSession = SparkSession
@@ -61,6 +61,19 @@ object BatchJobImpl extends BatchJob {
       //.withColumn("over_quota", when($"sum_bytes_user".gt($"quota"), "yes").otherwise("no"))
       .filter("sum_bytes_user > quota")
       .select($"email")
+  }
+
+  override def writeToJdbc(dataFrame: DataFrame, jdbcURI: String, jdbcTable: String, user: String, password: String): Unit = {
+    dataFrame
+      .write
+      .mode(SaveMode.Append)
+      .format("jdbc")
+      .option("driver", "org.postgresql.Driver")
+      .option("url", jdbcURI)
+      .option("dbtable", jdbcTable)
+      .option("user", user)
+      .option("password", password)
+      .save()
   }
 
   def main(args: Array[String]): Unit = run(args)

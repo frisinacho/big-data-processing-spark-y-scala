@@ -60,6 +60,18 @@ object Provisioner {
 
       println("Creating the bytes_by_app_agg table (app TEXT, date TIMESTAMP, sum_bytes_user BIGINT).")
       statement.execute("CREATE TABLE IF NOT EXISTS bytes_by_app_agg(app TEXT, date TIMESTAMP, sum_bytes_app BIGINT)")
+
+      println("Creating the batch_bytes_by_antenna_agg table (antenna_id TEXT, sum_bytes_antenna BIGINT).")
+      statement.execute("CREATE TABLE IF NOT EXISTS batch_bytes_by_antenna_agg(antenna_id TEXT, sum_bytes_antenna BIGINT)")
+
+      println("Creating the batch_bytes_by_user_agg table (email TEXT, sum_bytes_user BIGINT).")
+      statement.execute("CREATE TABLE IF NOT EXISTS batch_bytes_by_user_agg(email TEXT, sum_bytes_user BIGINT)")
+
+      println("Creating the batch_bytes_by_app_agg table (app TEXT, sum_bytes_user BIGINT).")
+      statement.execute("CREATE TABLE IF NOT EXISTS batch_bytes_by_app_agg(app TEXT, sum_bytes_app BIGINT)")
+
+      println("Creating the batch_over_quota_agg table (email TEXT).")
+      statement.execute("CREATE TABLE IF NOT EXISTS batch_over_quota_agg(email TEXT)")
     } catch {
       case e => e.printStackTrace()
     }
