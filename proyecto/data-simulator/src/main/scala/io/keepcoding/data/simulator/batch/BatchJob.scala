@@ -1,6 +1,5 @@
 package io.keepcoding.data.simulator.batch
 
-import java.time.OffsetDateTime
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
 case class DevicesMessage(timestamp: Long, id: String, antenna_id: String, bytes: Long, app: String)
@@ -25,12 +24,14 @@ trait BatchJob {
     val aggByAntennaDF = computeBytesReceivedByAntenna(devicesDF)
     val aggByUserDF = computeBytesTransmittedByUser(devicesDF)
     val aggByAppDF = computeBytesTransmittedByApp(devicesDF)
+    val aggByQuotaDF = computeUsersOverQuota(devicesDF)
 
     devicesDF.show()
 
     aggByAntennaDF.show()
     aggByUserDF.show()
     aggByAppDF.show()
+    aggByQuotaDF.show()
 
     spark.close()
 

@@ -1,5 +1,5 @@
 package io.keepcoding.data.simulator.batch
-import org.apache.spark.sql.functions.sum
+import org.apache.spark.sql.functions.{sum, when}
 import org.apache.spark.sql.types.TimestampType
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
@@ -52,7 +52,16 @@ object BatchJobImpl extends BatchJob {
       .select($"app", $"sum_bytes_app")
   }
 
-  override def computeUsersOverQuota(dataFrame: DataFrame): DataFrame = ???
+  override def computeUsersOverQuota(dataFrame: DataFrame): DataFrame = {
+    dataFrame
+      .select(($"timestamp").cast(TimestampType), $"bytes", $"email", $"quota")
+      .withWatermark("timestamp", "30 seconds")
+      .groupBy($"email", $"quota")
+      .agg(sum($"bytes").as("sum_bytes_user"))
+      //.withColumn("over_quota", when($"sum_bytes_user".gt($"quota"), "yes").otherwise("no"))
+      .filter("sum_bytes_user > quota")
+      .select($"email")
+  }
 
   def main(args: Array[String]): Unit = run(args)
 }
