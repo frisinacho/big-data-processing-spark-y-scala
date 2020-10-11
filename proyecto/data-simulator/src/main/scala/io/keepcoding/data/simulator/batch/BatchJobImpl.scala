@@ -27,8 +27,7 @@ object BatchJobImpl extends BatchJob {
 
   override def computeBytesReceivedByAntenna(dataFrame: DataFrame): DataFrame = {
     dataFrame
-      .select(($"timestamp").cast(TimestampType), $"bytes", $"antenna_id")
-      .withWatermark("timestamp", "30 seconds")
+      .select($"bytes", $"antenna_id")
       .groupBy($"antenna_id")
       .agg(sum($"bytes").as("sum_bytes_antenna"))
       .select($"antenna_id", $"sum_bytes_antenna")
@@ -36,8 +35,7 @@ object BatchJobImpl extends BatchJob {
 
   override def computeBytesTransmittedByUser(dataFrame: DataFrame): DataFrame = {
     dataFrame
-      .select(($"timestamp").cast(TimestampType), $"bytes", $"email")
-      .withWatermark("timestamp", "30 seconds")
+      .select($"bytes", $"email")
       .groupBy($"email")
       .agg(sum($"bytes").as("sum_bytes_user"))
       .select($"email", $"sum_bytes_user")
@@ -45,8 +43,7 @@ object BatchJobImpl extends BatchJob {
 
   override def computeBytesTransmittedByApp(dataFrame: DataFrame): DataFrame = {
     dataFrame
-      .select(($"timestamp").cast(TimestampType), $"bytes", $"app")
-      .withWatermark("timestamp", "30 seconds")
+      .select($"bytes", $"app")
       .groupBy($"app")
       .agg(sum($"bytes").as("sum_bytes_app"))
       .select($"app", $"sum_bytes_app")
@@ -54,8 +51,7 @@ object BatchJobImpl extends BatchJob {
 
   override def computeUsersOverQuota(dataFrame: DataFrame): DataFrame = {
     dataFrame
-      .select(($"timestamp").cast(TimestampType), $"bytes", $"email", $"quota")
-      .withWatermark("timestamp", "30 seconds")
+      .select($"bytes", $"email", $"quota")
       .groupBy($"email", $"quota")
       .agg(sum($"bytes").as("sum_bytes_user"))
       //.withColumn("over_quota", when($"sum_bytes_user".gt($"quota"), "yes").otherwise("no"))
