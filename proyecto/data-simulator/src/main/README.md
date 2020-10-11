@@ -20,7 +20,7 @@ Apart from the initial provisioning on the database, you must run the demo-scrip
 
 ## Speed Layer
 ### Streaming Package
-This package contains both the `StreamingJob` file, as well as it's implementation.
+This package contains both the `StreamingJob` file, as well as its implementation.
 
 The Speed Layer will match live information coming from Kafka with stored information on a PostgreSQL database to enrich a dataset, and process this computed data to store them back both to another Postgres tables as well as in *Parquet* (segregated by **year**, **month**, **day** and **hour**).
 
@@ -29,7 +29,7 @@ You need to provide the following arguments while running **StreamingJob**:
 
 ## Batch Layer
 ### Batch Package
-This package contains both the `BatchJob` file, as well as it's implementation.
+This package contains both the `BatchJob` file, as well as its implementation.
 
 The Batch Layer will read the *Parquet* information (filtered by the date provided in the arguments) and process de data to finally store the results in Postgres.
 
